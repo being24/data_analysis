@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "njpwerner.autodocstring",
+        "mhutchie.git-graph",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "jock.svg",
+        "gruntfuggly.todo-tree",
+        "shardulm94.trailing-spaces"
+    ]
+}
