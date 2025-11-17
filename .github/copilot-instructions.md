@@ -1,76 +1,82 @@
+# Primary Directive
+- Think in English, interact with the user in Japanese.
+
 # Copilot Instructions
 
 ## Communication
-- 日本語で応答すること
-- 実装を行う前に、作業内容についてユーザに確認を取り、了承を得ること
-- 必要に応じて、ユーザに質問を行い、要求を明確にすること
-- 作業後、作業内容とユーザが次に取れる行動を説明すること
+- Respond in Japanese.
+- Before implementing anything, confirm the intended work with the user and obtain approval.
+- Ask the user for clarification when necessary.
+- After completing work, explain what was done and describe the next actions the user can take.
 
 ## Workflow
-- 作業項目が多い場合は、段階に区切り、git commit を行いながら進めること
-  - semantic commit を使用する
+- If the task involves many steps, divide the work into stages and make git commits along the way.
+  - Use semantic commits.
 
 ## Development Environment & Tools
-### パッケージ管理
-- コマンドの実行には必ずuvを使用すること
-  - 基本的に、uv runコマンドで実行すること。uv run pythonコマンドは使用しないこと
-- ライブラリを追加する際は、uvコマンドを使用してインストールすること
-- 開発時しか使わないライブラリはdev dependenciesとしてインストールすること
 
-### コードフォーマット
-- コードの出力が終わった際、フォーマッタのruffを使用してコードを整形すること
-- 同時に対象ファイルに`check --fix --select I`を実行し、import文の整理を行うこと
+### Package Management
+- Always use `uv` to run commands.
+  - Normally use `uv run` instead of `uv run python`.
+- When adding libraries, install them via `uv`.
+- Libraries used only during development must be installed as dev dependencies.
 
-### その他
-- コマンドの出力が確認できない場合、get last command / check background terminal を使用して確認すること
+### Code Formatting
+- After outputting code, format it using `ruff`.
+- Also execute `check --fix --select I` on the target file to organize import statements.
+
+### Other
+- If command output is not visible, check with `get last command` or `check background terminal`.
 
 ## Project Structure
-- コードはsrcディレクトリに保存すること
-- テストコードはtestsディレクトリに保存すること
-- ドキュメントはdocsディレクトリに保存すること
-- 処理データはdataディレクトリに、実験条件ごとにサブディレクトリを作成して保存すること
-- 処理結果はresultsディレクトリに、実験条件ごとにサブディレクトリを作成して保存すること
-- テスト用の使い捨てスクリプトは適当なtmpディレクトリに保存し、.gitignoreに追加すること
+- Place source code under the `src` directory.
+- Place test code under the `tests` directory.
+- Place documentation under the `docs` directory.
+- Store processed data in the `data` directory, in subdirectories per experimental condition.
+- Store processing results in the `results` directory, in subdirectories per experimental condition.
+- Temporary throwaway scripts should be placed in a `tmp` directory and added to `.gitignore`.
 
 ## Code Style
-### 基本方針
-- コードに絵文字を使用しないこと
-- importは必ずファイル冒頭にまとめること
-- 可能な限り型ヒントを追加すること
-- スクリプトに実行時引数を使用する形には極力しないこと
 
-### Python固有
-- pythonは3.10以上を使用しているので、型ヒントに3.10以降の構文を使用すること
-  - 特にTypingモジュールからListやDictをインポートせず、組み込みのlistやdictを使用すること
+### General Policy
+- Do not use emojis in code.
+- Collect all import statements at the top of each file.
+- Add type hints wherever possible.
+- Avoid writing scripts that rely on command-line execution arguments unless necessary.
 
-### ファイル操作
-- ファイルを指定するときは、必ず相対パスを使用すること
-- ファイル操作を行う場合は、pathlibを使用すること
+### Python-Specific
+- Python 3.10+ is used, so use modern type-hint syntax.
+  - Do not import `List` or `Dict` from typing; use built-in `list`, `dict`, etc.
+
+### File Operations
+- Always specify files using relative paths.
+- Use `pathlib` for file operations.
 
 ## Libraries & Dependencies
-- データ解析にはpandasではなくpolarsを使用すること
-- 可視化にはmatplotlibを使用すること
+- Use `polars` instead of pandas for data analysis.
+- Use `matplotlib` for visualization.
 
 ## Data Processing
-- 多数のデータを連続して処理するときは、データごとにdirectoryを分けて管理すること
-- ループ処理を行う場合は、進捗を表示すること
+- When processing many datasets, organize them in separate directories per dataset.
+- When using loops, display processing progress.
 
 ## Visualization
-### 基本設定
-- 可視化にはmatplotlibを使用すること
-- グラフのタイトル、軸ラベル、凡例を必ず追加すること
 
-### スタイル
-- タイトルなどの要素には日本語を使用しないこと
-- フォントはTex Gyre Termes,Times New Romanを使用すること
-  - Tex Gyre Termesはasset/fontsディレクトリに保存されている
-- フォントサイズの指定にはrcParamsを使用し、特段の指示がない場合はそれぞれの場所で指定しないこと
+### Basic Settings
+- Use `matplotlib` for visualization.
+- Always add graph title, axis labels, and legends.
 
-### レイアウト
-- tight_layout()を使用してレイアウトを自動調整すること
-- 多数のデータを連続して描画するときは、fig.close()を使用してメモリを解放すること
+### Style
+- Do not use Japanese in titles or other elements.
+- Use fonts **TeX Gyre Termes** or **Times New Roman**.
+  - TeX Gyre Termes is stored in the `asset/fonts` directory.
+- Use `rcParams` to specify font size; do not override them unless necessary.
+
+### Layout
+- Use `tight_layout()` for automatic layout adjustment.
+- When drawing many figures repeatedly, free memory using `fig.close()`.
 
 ## Documentation
-- ドキュメントは必ずMarkdown形式で作成すること
-- ドキュメントには必ず目次を追加すること
-- ドキュメントはdocsディレクトリに保存すること
+- Documentation must be created in Markdown format.
+- Always include a table of contents.
+- Store documentation in the `docs` directory.
