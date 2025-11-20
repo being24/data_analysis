@@ -23,6 +23,7 @@
 
 ### Code Formatting
 - After outputting code, format it using `ruff`.
+- If ruff is not installed, prompt the user to install it with commands: `uv add --dev ruff`
 - Also execute `check --fix --select I` on the target file to organize import statements.
 
 ### Other
