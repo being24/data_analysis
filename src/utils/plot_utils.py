@@ -59,10 +59,19 @@ def setup_matplotlib_fonts(font_size: int = 12) -> None:
     Args:
         font_size: グラフ全体で使用するフォントサイズ
     """
+
     # TeX Gyre Termesフォントを使用(assetsディレクトリに保存されている前提)
     tex_font_path = Path("assets/fonts/texgyretermes/texgyretermes-regular.otf")
     if tex_font_path.exists():
         fm.fontManager.addfont(str(tex_font_path))
+
+    tex_font_italic_path = Path("assets/fonts/texgyretermes/texgyretermes-italic.otf")
+    if tex_font_italic_path.exists():
+        fm.fontManager.addfont(str(tex_font_italic_path))
+
+    tex_font_bold_path = Path("assets/fonts/texgyretermes/texgyretermes-bold.otf")
+    if tex_font_bold_path.exists():
+        fm.fontManager.addfont(str(tex_font_bold_path))
 
     noto_sans_jp_path = Path(
         "assets/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf"
@@ -77,6 +86,8 @@ def setup_matplotlib_fonts(font_size: int = 12) -> None:
 
     if "Noto Sans JP" not in names:
         print("Warning: 'Noto Sans JP' font not found. Using default font.")
+
+    # print("Available fonts:", names)
 
     # グラフ全体のフォント設定を一括で適用
     plt.rcParams.update(
