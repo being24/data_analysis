@@ -5,6 +5,7 @@
         "fontset",
         "mathtext",
         "matplotlib",
+        "noto",
         "pathlib",
         "Termes",
         "texgyretermes",
