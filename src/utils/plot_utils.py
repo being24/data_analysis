@@ -73,6 +73,12 @@ def setup_matplotlib_fonts(font_size: int = 12) -> None:
     if tex_font_bold_path.exists():
         fm.fontManager.addfont(str(tex_font_bold_path))
 
+    tex_font_bold_italic_path = Path(
+        "assets/fonts/texgyretermes/texgyretermes-bolditalic.otf"
+    )
+    if tex_font_bold_italic_path.exists():
+        fm.fontManager.addfont(str(tex_font_bold_italic_path))
+
     noto_sans_jp_path = Path(
         "assets/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf"
     )
