@@ -12,13 +12,25 @@ from matplotlib.offsetbox import AnchoredOffsetbox, HPacker, TextArea
 
 
 def set_xlabel_ja_en_math(
-    ax,
+    ax: plt.Axes,
     ja: str,
     en_math: str,
     ja_family="Noto Sans JP",
     en_family="TeX Gyre Termes",
     y=-0.12,
 ):
+    """
+    日本語と英語(数式対応)の複合xlabelを設定する
+
+    Args:
+        ax (plt.Axes): 対象のAxesオブジェクト
+        ja (str): 日本語ラベル
+        en_math (str): 英語ラベル（数式対応）
+        ja_family (str, optional): 日本語フォントファミリー. Defaults to "Noto Sans JP".
+        en_family (str, optional): 英語フォントファミリー. Defaults to "TeX Gyre Termes".
+        y (float, optional): ラベルのy座標位置. Defaults to -0.12.
+    """
+
     fp_ja = FontProperties(family=ja_family)
     fp_en = FontProperties(family=en_family)
 
@@ -48,17 +60,17 @@ def setup_matplotlib_fonts(font_size: int = 12) -> None:
         font_size: グラフ全体で使用するフォントサイズ
     """
     # TeX Gyre Termesフォントを使用(assetsディレクトリに保存されている前提)
-    tex_font_path = Path("assets\\fonts\\texgyretermes\\texgyretermes-regular.otf")
+    tex_font_path = Path("assets/fonts/texgyretermes/texgyretermes-regular.otf")
     if tex_font_path.exists():
         fm.fontManager.addfont(str(tex_font_path))
 
     noto_sans_jp_path = Path(
-        "assets\\fonts\\Noto_Sans_JP\\NotoSansJP-VariableFont_wght.ttf"
+        "assets/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf"
     )
     if noto_sans_jp_path.exists():
         fm.fontManager.addfont(str(noto_sans_jp_path))
 
-    names = {f.name for f in fm.fontManager.ttflist}
+    names = {f.name for f in (fm.fontManager.ttflist + fm.fontManager.afmlist)}
 
     if "TeX Gyre Termes" not in names:
         print("Warning: 'TeX Gyre Termes' font not found. Using default font.")
