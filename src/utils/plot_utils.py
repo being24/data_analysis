@@ -15,9 +15,9 @@ def set_xlabel_ja_en_math(
     ax: plt.Axes,
     ja: str,
     en_math: str,
-    ja_family="Noto Sans JP",
-    en_family="TeX Gyre Termes",
-    y=-0.12,
+    ja_family: str = "Noto Sans JP",
+    en_family: str = "TeX Gyre Termes",
+    y: float = -0.12,
 ):
     """
     日本語と英語(数式対応)の複合xlabelを設定する
