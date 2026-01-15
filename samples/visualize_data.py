@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # プロジェクトルートをパスに追加
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.utils.plot_utils import setup_matplotlib_fonts
+from src.utils.plot_utils import setup_matplotlib_fonts, set_xlabel_ja_en_math
 
 FONT_SIZE = 12
 
@@ -58,6 +58,7 @@ ax.plot(
 )
 
 ax.set_xlabel("Year")
+# set_xlabel_ja_en_math(ax, "年 ", r"Year $\theta_{x_{y}}$")
 ax.set_ylabel("Number of University Students")
 ax.set_title("University and Graduate Students in Kanagawa Prefecture (1975-2023)")
 ax.grid(True, alpha=0.3)
